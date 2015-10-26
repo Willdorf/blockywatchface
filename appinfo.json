@@ -10,7 +10,18 @@
     "watchface": true
   },
   "appKeys": {
-    "dummy": 0
+	  "blockOneColor" : 0,
+	  "blockTwoColor" : 1,
+	  "blockOneColor" : 2,
+	  "blockOneColor" : 3,
+	  "blockOneColor" : 4,
+	  "blockOneColor" : 5,
+	  "blockOneColor" : 6,
+	  "blockOneColor" : 7,
+	  "blockOneColor" : 8,
+	  "blockOneColor" : 9,
+	  "blockOneColor" : 10,
+	  "blockOneColor" : 11
   },
   "resources": {
     "media": []
