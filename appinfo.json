@@ -1,0 +1,18 @@
+{
+  "uuid": "a4c5a2bd-8ae1-489a-bd6d-c14a9c896d5d",
+  "shortName": "blocky",
+  "longName": "blocky",
+  "companyName": "MakeAwesomeHappen",
+  "versionLabel": "1.0",
+  "sdkVersion": "3",
+  "targetPlatforms": ["basalt"],
+  "watchapp": {
+    "watchface": true
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  }
+}
