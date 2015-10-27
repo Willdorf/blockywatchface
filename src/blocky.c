@@ -161,8 +161,6 @@ static void draw_watchface(Layer *layer, GContext *ctx) {
 		cur_hour = 12;
 	}
 
-	cur_hour = 12;
-
 	GRect f = layer_get_frame((Layer *) s_time_layer);
 	int shift = 5;
 	switch (cur_hour) {
