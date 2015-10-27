@@ -161,56 +161,70 @@ static void draw_watchface(Layer *layer, GContext *ctx) {
 		cur_hour = 12;
 	}
 
+	cur_hour = 12;
+
 	GRect f = layer_get_frame((Layer *) s_time_layer);
 	int shift = 5;
 	switch (cur_hour) {
 		case 1:
 			f.origin.x = 0;
 			f.origin.y = 52 - shift;
+			text_layer_set_text_color(s_time_layer, gcolor_legible_over(blockOneColor));
 			break;
 		case 2:
 			f.origin.x = 24;
 			f.origin.y = 52 - shift;
+			text_layer_set_text_color(s_time_layer, gcolor_legible_over(blockTwoColor));
 			break;
 		case 3:
 			f.origin.x = 48;
 			f.origin.y = 28 - shift;
+			text_layer_set_text_color(s_time_layer, gcolor_legible_over(blockThreeColor));
 			break;
 		case 4:
 			f.origin.x = 72;
 			f.origin.y = 52 - shift;
+			text_layer_set_text_color(s_time_layer, gcolor_legible_over(blockFourColor));
 			break;
 		case 5:
 			f.origin.x = 96;
 			f.origin.y = 52 - shift;
+			text_layer_set_text_color(s_time_layer, gcolor_legible_over(blockFiveColor));
 			break;
 		case 6:
 			f.origin.x = 120;
 			f.origin.y = 28 - shift;
+			text_layer_set_text_color(s_time_layer, gcolor_legible_over(blockSixColor));
 			break;
 		case 7:
 			f.origin.x = 0;
 			f.origin.y = 116 - shift;
+			text_layer_set_text_color(s_time_layer, gcolor_legible_over(blockSevenColor));
 			break;
 		case 8:
 			f.origin.x = 24;
 			f.origin.y = 116 - shift;
+			text_layer_set_text_color(s_time_layer, gcolor_legible_over(blockEightColor));
 			break;
 		case 9:
 			f.origin.x = 48;
 			f.origin.y = 92 - shift;
+			text_layer_set_text_color(s_time_layer, gcolor_legible_over(blockNineColor));
 			break;
 		case 10:
 			f.origin.x = 72;
 			f.origin.y = 116 - shift;
+			text_layer_set_text_color(s_time_layer, gcolor_legible_over(blockTenColor));
 			break;
 		case 11:
 			f.origin.x = 96;
 			f.origin.y = 116 - shift;
+			text_layer_set_text_color(s_time_layer, gcolor_legible_over(blockElevenColor));
 			break;
 		case 12:
 			f.origin.x = 120;
 			f.origin.y = 92 - shift;
+			text_layer_set_text_color(s_time_layer, gcolor_legible_over(blockTwelveColor));
 			break;
 		default :
 			APP_LOG(APP_LOG_LEVEL_DEBUG, "invalid hour: %d", cur_hour);
@@ -255,6 +269,7 @@ static void draw_watchface(Layer *layer, GContext *ctx) {
 		case 1:
 			graphics_context_set_fill_color(ctx, blockOneColor);
 			graphics_fill_rect(ctx, one, 0, 0);
+			break;
 		default :
 			APP_LOG(APP_LOG_LEVEL_DEBUG, "invalid hour: %d", cur_hour);
 	}
@@ -278,6 +293,106 @@ static void draw_watchface(Layer *layer, GContext *ctx) {
 
 }
 
+static void inbox_received_handler(DictionaryIterator *iter, void *context) {
+	APP_LOG(APP_LOG_LEVEL_DEBUG, "inbox received handler");
+	Tuple *background_color_t = dict_find(iter, KEY_BACKGROUND_COLOR);
+	Tuple *one_t = dict_find(iter, KEY_BLOCK_ONE_COLOR);
+	Tuple *two_t = dict_find(iter, KEY_BLOCK_TWO_COLOR);
+	Tuple *three_t = dict_find(iter, KEY_BLOCK_THREE_COLOR);
+	Tuple *four_t = dict_find(iter, KEY_BLOCK_FOUR_COLOR);
+	Tuple *five_t = dict_find(iter, KEY_BLOCK_FIVE_COLOR);
+	Tuple *six_t = dict_find(iter, KEY_BLOCK_SIX_COLOR);
+	Tuple *seven_t = dict_find(iter, KEY_BLOCK_SEVEN_COLOR);
+	Tuple *eight_t = dict_find(iter, KEY_BLOCK_EIGHT_COLOR);
+	Tuple *nine_t = dict_find(iter, KEY_BLOCK_NINE_COLOR);
+	Tuple *ten_t = dict_find(iter, KEY_BLOCK_TEN_COLOR);
+	Tuple *eleven_t = dict_find(iter, KEY_BLOCK_ELEVEN_COLOR);
+	Tuple *twelve_t = dict_find(iter, KEY_BLOCK_TWELVE_COLOR);
+
+	if (background_color_t) {
+		int bc = background_color_t->value->int32;
+		persist_write_int(KEY_BACKGROUND_COLOR, bc);
+		background_color = GColorFromHEX(bc);
+		window_set_background_color(window, background_color);
+		APP_LOG(APP_LOG_LEVEL_DEBUG, "background color %d", bc);
+	}
+
+	if (one_t) {
+		int c = one_t->value->int32;
+		persist_write_int(KEY_BLOCK_ONE_COLOR, c);
+		blockOneColor = GColorFromHEX(c);
+	}
+
+	if (two_t) {
+		int c = two_t->value->int32;
+		persist_write_int(KEY_BLOCK_TWO_COLOR, c);
+		blockTwoColor = GColorFromHEX(c);
+	}
+
+	if (three_t) {
+		int c = three_t->value->int32;
+		persist_write_int(KEY_BLOCK_THREE_COLOR, c);
+		blockThreeColor = GColorFromHEX(c);
+	}
+
+	if (four_t) { 
+		int c = four_t->value->int32;
+		persist_write_int(KEY_BLOCK_FOUR_COLOR, c);
+		blockFourColor = GColorFromHEX(c);
+	}
+
+	if (five_t) {
+		int c = five_t->value->int32;
+		persist_write_int(KEY_BLOCK_FIVE_COLOR, c);
+		blockFiveColor = GColorFromHEX(c);
+	}
+
+	if (six_t) { 
+		int c = six_t->value->int32;
+		persist_write_int(KEY_BLOCK_SIX_COLOR, c);
+		blockSixColor = GColorFromHEX(c);
+	}
+
+	if (seven_t) {
+		int c = seven_t->value->int32;
+		persist_write_int(KEY_BLOCK_SEVEN_COLOR, c);
+		blockSevenColor = GColorFromHEX(c);
+	}
+
+	if (eight_t) {
+		int c = eight_t->value->int32;
+		persist_write_int(KEY_BLOCK_EIGHT_COLOR, c);
+		blockEightColor = GColorFromHEX(c);
+	}
+
+	if (nine_t) {
+		int c = nine_t->value->int32;
+		persist_write_int(KEY_BLOCK_NINE_COLOR, c);
+		blockNineColor = GColorFromHEX(c);
+		APP_LOG(APP_LOG_LEVEL_DEBUG, "nine color %d", c);
+	}
+
+	if (ten_t) {
+		int c = ten_t->value->int32;
+		persist_write_int(KEY_BLOCK_TEN_COLOR, c);
+		blockTenColor = GColorFromHEX(c);
+		APP_LOG(APP_LOG_LEVEL_DEBUG, "ten color %d", c);
+	}
+
+	if (eleven_t) {
+		int c = eleven_t->value->int32;
+		persist_write_int(KEY_BLOCK_ELEVEN_COLOR, c);
+		blockElevenColor = GColorFromHEX(c);
+		APP_LOG(APP_LOG_LEVEL_DEBUG, "eleven color %d", c);
+	}
+
+	if (twelve_t) {
+		int c = twelve_t->value->int32;
+		persist_write_int(KEY_BLOCK_TWELVE_COLOR, c);
+		blockTwelveColor = GColorFromHEX(c);
+	}
+}
+
 static void window_load(Window *window) {
 	Layer *window_layer = window_get_root_layer(window);
 	GRect bounds = layer_get_bounds(window_layer);
@@ -292,7 +407,12 @@ static void window_load(Window *window) {
 	text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_time_layer));
 
-	background_color = GColorWhite;
+	if (persist_read_int(KEY_BACKGROUND_COLOR)) {
+		background_color = GColorFromHEX(persist_read_int(KEY_BACKGROUND_COLOR));
+		window_set_background_color(window, GColorFromHEX(persist_read_int(KEY_BACKGROUND_COLOR)));
+	} else {
+		background_color = GColorWhite;
+	}
 
 	setup_blocks();
 }
@@ -311,7 +431,10 @@ static void init(void) {
 	window_stack_push(window, animated);
 
 	//Register with TickTimerService
-	tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
+	tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
+
+	app_message_register_inbox_received(inbox_received_handler);
+	app_message_open(app_message_inbox_size_maximum(), app_message_outbox_size_maximum());
 
 	time_t start_time = time(NULL);
 	update_time(localtime(&start_time));

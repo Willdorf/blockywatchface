@@ -9,6 +9,9 @@
   "watchapp": {
     "watchface": true
   },
+  "capabilities" : [
+	  "configurable"
+  ],
   "appKeys": {
 	  "backgroundColor" : 0,
 	  "blockOneColor" : 1,
