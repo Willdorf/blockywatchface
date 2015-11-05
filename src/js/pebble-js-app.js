@@ -3,7 +3,7 @@ Pebble.addEventListener('ready', function() {
 });
 
 Pebble.addEventListener('showConfiguration', function() {
-	var url = 'http://7dea9d32.ngrok.io';
+	var url = 'http://armstrongwill.com/pebbleconfigurationpages/blocky/index.html';
 
 	console.log('Showing configuration page: ' + url);
 
