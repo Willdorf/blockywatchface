@@ -53,19 +53,19 @@ function getAndStoreConfigData() {
 		blockTwelveColor : $blockTwelveColorPicker.val()
 	};
 
-	localStorage.backgroundColor = options.backgroundColor;
-	localStorage.blockOneColor = options.blockOneColor;
-	localStorage.blockTwoColor = options.blockTwoColor;
-	localStorage.blockThreeColor = options.blockThreeColor;
-	localStorage.blockFourColor = options.blockFourColor;
-	localStorage.blockFiveColor = options.blockFiveColor;
-	localStorage.blockSixColor = options.blockSixColor;
-	localStorage.blockSevenColor = options.blockSevenColor;
-	localStorage.blockEightColor = options.blockEightColor;
-	localStorage.blockNineColor = options.blockNineColor;
-	localStorage.blockTenColor = options.blockTenColor;
-	localStorage.blockElevenColor = options.blockElevenColor;
-	localStorage.blockTwelveColor = options.blockTwelveColor;
+	localStorage.willdorfblockybackgroundColor = options.backgroundColor;
+	localStorage.willdorfblockyblockOneColor = options.blockOneColor;
+	localStorage.willdorfblockyblockTwoColor = options.blockTwoColor;
+	localStorage.willdorfblockyblockThreeColor = options.blockThreeColor;
+	localStorage.willdorfblockyblockFourColor = options.blockFourColor;
+	localStorage.willdorfblockyblockFiveColor = options.blockFiveColor;
+	localStorage.willdorfblockyblockSixColor = options.blockSixColor;
+	localStorage.willdorfblockyblockSevenColor = options.blockSevenColor;
+	localStorage.willdorfblockyblockEightColor = options.blockEightColor;
+	localStorage.willdorfblockyblockNineColor = options.blockNineColor;
+	localStorage.willdorfblockyblockTenColor = options.blockTenColor;
+	localStorage.willdorfblockyblockElevenColor = options.blockElevenColor;
+	localStorage.willdorfblockyblockTwelveColor = options.blockTwelveColor;
 
 	console.log('Got Options: ' + JSON.stringify(options));
 	return options;
@@ -87,19 +87,19 @@ function loadOptions() {
 	var $blockTwelveColorPicker = $('#blockTwelveColorPicker');
 
 	if (localStorage.backgroundColor) {
-		$backgroundColorPicker[0].value = localStorage.backgroundColor;
-		$blockOneColorPicker[0].value = localStorage.blockOneColor;
-		$blockTwoColorPicker[0].value = localStorage.blockTwoColor;
-		$blockThreeColorPicker[0].value = localStorage.blockThreeColor;
-		$blockFourColorPicker[0].value = localStorage.blockFourColor;
-		$blockFiveColorPicker[0].value = localStorage.blockFiveColor;
-		$blockSixColorPicker[0].value = localStorage.blockSixColor;
-		$blockSevenColorPicker[0].value = localStorage.blockSevenColor;
-		$blockEightColorPicker[0].value = localStorage.blockEightColor;
-		$blockNineColorPicker[0].value = localStorage.blockNineColor;
-		$blockTenColorPicker[0].value = localStorage.blockTenColor;
-		$blockElevenColorPicker[0].value = localStorage.blockElevenColor;
-		$blockTwelveColorPicker[0].value = localStorage.blockTwelveColor;
+		$backgroundColorPicker[0].value = localStorage.willdorfblockybackgroundColor;
+		$blockOneColorPicker[0].value = localStorage.willdorfblockyblockOneColor;
+		$blockTwoColorPicker[0].value = localStorage.willdorfblockyblockTwoColor;
+		$blockThreeColorPicker[0].value = localStorage.willdorfblockyblockThreeColor;
+		$blockFourColorPicker[0].value = localStorage.willdorfblockyblockFourColor;
+		$blockFiveColorPicker[0].value = localStorage.willdorfblockyblockFiveColor;
+		$blockSixColorPicker[0].value = localStorage.willdorfblockyblockSixColor;
+		$blockSevenColorPicker[0].value = localStorage.willdorfblockyblockSevenColor;
+		$blockEightColorPicker[0].value = localStorage.willdorfblockyblockEightColor;
+		$blockNineColorPicker[0].value = localStorage.willdorfblockyblockNineColor;
+		$blockTenColorPicker[0].value = localStorage.willdorfblockyblockTenColor;
+		$blockElevenColorPicker[0].value = localStorage.willdorfblockyblockElevenColor;
+		$blockTwelveColorPicker[0].value = localStorage.willdorfblockyblockTwelveColor;
 	}
 }
 
