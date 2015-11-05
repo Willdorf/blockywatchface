@@ -309,6 +309,9 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 
 	if (background_color_t) {
 		int bc = background_color_t->value->int32;
+		if (bc == 0) { //quick fix so that black colour persists
+			bc++;
+		}
 		persist_write_int(KEY_BACKGROUND_COLOR, bc);
 		background_color = GColorFromHEX(bc);
 		window_set_background_color(window, background_color);
@@ -317,54 +320,81 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 
 	if (one_t) {
 		int c = one_t->value->int32;
+		if (c == 0) { //quick fix so that black colour persists
+			c++;
+		} 
 		persist_write_int(KEY_BLOCK_ONE_COLOR, c);
 		blockOneColor = GColorFromHEX(c);
 	}
 
 	if (two_t) {
 		int c = two_t->value->int32;
+		if (c == 0) { //quick fix so that black colour persists
+			c++;
+		} 
 		persist_write_int(KEY_BLOCK_TWO_COLOR, c);
 		blockTwoColor = GColorFromHEX(c);
 	}
 
 	if (three_t) {
 		int c = three_t->value->int32;
+		if (c == 0) { //quick fix so that black colour persists
+			c++;
+		} 
 		persist_write_int(KEY_BLOCK_THREE_COLOR, c);
 		blockThreeColor = GColorFromHEX(c);
 	}
 
 	if (four_t) { 
 		int c = four_t->value->int32;
+		if (c == 0) { //quick fix so that black colour persists
+			c++;
+		} 
 		persist_write_int(KEY_BLOCK_FOUR_COLOR, c);
 		blockFourColor = GColorFromHEX(c);
 	}
 
 	if (five_t) {
 		int c = five_t->value->int32;
+		if (c == 0) { //quick fix so that black colour persists
+			c++;
+		} 
 		persist_write_int(KEY_BLOCK_FIVE_COLOR, c);
 		blockFiveColor = GColorFromHEX(c);
 	}
 
 	if (six_t) { 
 		int c = six_t->value->int32;
+		if (c == 0) { //quick fix so that black colour persists
+			c++;
+		} 
 		persist_write_int(KEY_BLOCK_SIX_COLOR, c);
 		blockSixColor = GColorFromHEX(c);
 	}
 
 	if (seven_t) {
 		int c = seven_t->value->int32;
+		if (c == 0) { //quick fix so that black colour persists
+			c++;
+		} 
 		persist_write_int(KEY_BLOCK_SEVEN_COLOR, c);
 		blockSevenColor = GColorFromHEX(c);
 	}
 
 	if (eight_t) {
 		int c = eight_t->value->int32;
+		if (c == 0) { //quick fix so that black colour persists
+			c++;
+		} 
 		persist_write_int(KEY_BLOCK_EIGHT_COLOR, c);
 		blockEightColor = GColorFromHEX(c);
 	}
 
 	if (nine_t) {
 		int c = nine_t->value->int32;
+		if (c == 0) { //quick fix so that black colour persists
+			c++;
+		} 
 		persist_write_int(KEY_BLOCK_NINE_COLOR, c);
 		blockNineColor = GColorFromHEX(c);
 		APP_LOG(APP_LOG_LEVEL_DEBUG, "nine color %d", c);
@@ -372,6 +402,9 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 
 	if (ten_t) {
 		int c = ten_t->value->int32;
+		if (c == 0) { //quick fix so that black colour persists
+			c++;
+		} 
 		persist_write_int(KEY_BLOCK_TEN_COLOR, c);
 		blockTenColor = GColorFromHEX(c);
 		APP_LOG(APP_LOG_LEVEL_DEBUG, "ten color %d", c);
@@ -379,6 +412,9 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 
 	if (eleven_t) {
 		int c = eleven_t->value->int32;
+		if (c == 0) { //quick fix so that black colour persists
+			c++;
+		} 
 		persist_write_int(KEY_BLOCK_ELEVEN_COLOR, c);
 		blockElevenColor = GColorFromHEX(c);
 		APP_LOG(APP_LOG_LEVEL_DEBUG, "eleven color %d", c);
@@ -386,6 +422,9 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 
 	if (twelve_t) {
 		int c = twelve_t->value->int32;
+		if (c == 0) { //quick fix so that black colour persists
+			c++;
+		} 
 		persist_write_int(KEY_BLOCK_TWELVE_COLOR, c);
 		blockTwelveColor = GColorFromHEX(c);
 	}
