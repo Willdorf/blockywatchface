@@ -18,6 +18,9 @@ static Window *window;
 static Layer *s_layer;
 static TextLayer *s_time_layer;
 
+static BitmapLayer *s_bt_icon_layer;
+static GBitmap *s_bt_icon_bitmap;
+
 static uint8_t s_hour;
 static uint8_t s_min;
 static uint8_t s_sec;
@@ -49,6 +52,16 @@ static GColor blockNineColor;
 static GColor blockTenColor;
 static GColor blockElevenColor;
 static GColor blockTwelveColor;
+
+static void bluetooth_callback(bool connected) {
+	//show icon if disconnected
+	layer_set_hidden(bitmap_layer_get_layer(s_bt_icon_layer), connected);
+
+	if (!connected) {
+		//issue a vibrating alert
+		vibes_double_pulse();
+	}
+}
 
 static void update_time(struct tm *tick_time) {
 	s_hour = tick_time->tm_hour;
@@ -452,6 +465,22 @@ static void window_load(Window *window) {
 	}
 
 	setup_blocks();
+
+	//create the bluetooth icon gbitmap
+	s_bt_icon_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BT_ICON);
+
+	//create the layer to display the bluetooth gbitmap
+	s_bt_icon_layer = bitmap_layer_create(GRect(0,0,30,30));
+	bitmap_layer_set_bitmap(s_bt_icon_layer, s_bt_icon_bitmap);
+	layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_bt_icon_layer));
+
+	//show the correct state of the bluetooth connection from the start
+#ifdef PBL_SDK_2
+	bluetooth_callback(bluetooth_connection_service_peek());
+#elif PBL_SDK_3
+	bluetooth_callback(connection_service_peek_pebble_app_connection());
+#endif
+
 }
 
 static void window_unload(Window *window) {
@@ -459,6 +488,10 @@ static void window_unload(Window *window) {
 
 	//destroy the main layer
 	layer_destroy(s_layer);
+
+	//destroy the bluetooth stuffs
+	gbitmap_destroy(s_bt_icon_bitmap);
+	bitmap_layer_destroy(s_bt_icon_layer);
 }
 
 static void init(void) {
@@ -475,6 +508,15 @@ static void init(void) {
 
 	app_message_register_inbox_received(inbox_received_handler);
 	app_message_open(app_message_inbox_size_maximum(), app_message_outbox_size_maximum());
+
+	//Register for Bluetooth connections updates
+#ifdef PBL_SDK_2
+	bluetooth_connection_service_subscribe(bluetooth_callback);
+#elif PBL_SDK_3
+	connection_service_subscribe((ConnectionHandlers) {
+			.pebble_app_connection_handler = bluetooth_callback
+			});
+#endif
 
 	time_t start_time = time(NULL);
 	update_time(localtime(&start_time));
