@@ -73,14 +73,10 @@ static void bluetooth_callback(bool connected) {
 }
 
 static void bluetooth_update_proc(Layer *layer, GContext *ctx) {
-
 	if (!s_bluetooth_connected) {
 		graphics_context_set_stroke_width(ctx, 3);
 		graphics_context_set_stroke_color(ctx, gcolor_legible_over(background_color));
-		bluetooth_path = gpath_create(&BLUETOOTH_INFO);
 		gpath_draw_outline(ctx, bluetooth_path);
-	} else {
-		gpath_destroy(bluetooth_path);
 	}
 }
 
@@ -489,6 +485,8 @@ static void window_load(Window *window) {
 
 	s_bluetooth_icon_layer = layer_create(GRect(0,0,30,30));
 	layer_set_update_proc(s_bluetooth_icon_layer, bluetooth_update_proc);
+	bluetooth_path = gpath_create(&BLUETOOTH_INFO);
+
 	layer_add_child(window_get_root_layer(window), s_bluetooth_icon_layer);
 
 	//show the correct state of the bluetooth connection from the start
@@ -508,6 +506,7 @@ static void window_unload(Window *window) {
 
 	//destroy the bluetooth stuffs
 	layer_destroy(s_bluetooth_icon_layer);
+	gpath_destroy(bluetooth_path);
 }
 
 static void init(void) {
