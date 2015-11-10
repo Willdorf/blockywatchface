@@ -17,6 +17,7 @@
 static Window *window;
 static Layer *s_layer;
 static TextLayer *s_time_layer;
+static TextLayer *s_date_layer;
 
 static Layer *s_bluetooth_icon_layer;
 static bool s_bluetooth_connected;
@@ -95,6 +96,11 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 	//update minutes
 	strftime(buffer, sizeof("00"), "%M", tick_time);
 	text_layer_set_text(s_time_layer, buffer);
+
+	//update the date using localized format
+	static char date_buffer[20];
+	strftime(date_buffer, sizeof(date_buffer), "%x", tick_time);
+	text_layer_set_text(s_date_layer, date_buffer);
 }
 
 static void setup_blocks() {
@@ -496,6 +502,13 @@ static void window_load(Window *window) {
 	bluetooth_callback(connection_service_peek_pebble_app_connection());
 #endif
 
+	s_date_layer = text_layer_create(GRect(0,0,144,14));
+	text_layer_set_font(s_date_layer, fonts_get_system_font(FONT_KEY_GOTHIC_14));
+	text_layer_set_text_color(s_date_layer, gcolor_legible_over(background_color));
+	text_layer_set_background_color(s_date_layer, GColorClear);
+	text_layer_set_text_alignment(s_date_layer, GTextAlignmentRight);
+	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_date_layer));
+
 }
 
 static void window_unload(Window *window) {
@@ -503,6 +516,9 @@ static void window_unload(Window *window) {
 
 	//destroy the main layer
 	layer_destroy(s_layer);
+
+	//destroy the date layer
+	text_layer_destroy(s_date_layer);
 
 	//destroy the bluetooth stuffs
 	layer_destroy(s_bluetooth_icon_layer);
