@@ -85,11 +85,6 @@ static void update_time(struct tm *tick_time) {
 	s_hour = tick_time->tm_hour;
 	s_min = tick_time->tm_min;
 	s_sec = tick_time->tm_sec;
-	layer_mark_dirty(s_layer);
-}
-
-static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
-	update_time(tick_time);
 
 	static char buffer[] = "00";
 
@@ -98,9 +93,16 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 	text_layer_set_text(s_time_layer, buffer);
 
 	//update the date using localized format
+	text_layer_set_text_color(s_date_layer, gcolor_legible_over(background_color));
 	static char date_buffer[20];
 	strftime(date_buffer, sizeof(date_buffer), "%x", tick_time);
 	text_layer_set_text(s_date_layer, date_buffer);
+
+	layer_mark_dirty(s_layer);
+}
+
+static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
+	update_time(tick_time);
 }
 
 static void setup_blocks() {
