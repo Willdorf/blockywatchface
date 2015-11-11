@@ -25,7 +25,9 @@
 	  "blockNineColor" : 9,
 	  "blockTenColor" : 10,
 	  "blockElevenColor" : 11,
-	  "blockTwelveColor" : 12
+	  "blockTwelveColor" : 12,
+	  "KEY_TEMPERATURE" : 13,
+	  "KEY_CONDITIONS" : 14
   },
   "resources": {
     "media": [
