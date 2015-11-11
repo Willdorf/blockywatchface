@@ -10,6 +10,3 @@ tags
 
 #ignore front-end frameworks
 bower_components/
-
-#don't want to show APPID key on github
-APPID.js

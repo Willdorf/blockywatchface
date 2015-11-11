@@ -1,7 +1,3 @@
-var dep = require('APPID.js');
-var APPID = dep.APPID;
-
-
 Pebble.addEventListener('showConfiguration', function() {
 	var url = 'http://armstrongwill.com/pebbleconfigurationpages/blocky/index.html';
 
