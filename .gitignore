@@ -11,5 +11,5 @@ tags
 #ignore front-end frameworks
 bower_components/
 
-#keep the api key off of git repo
-API.js
+#don't want to show APPID key on github
+APPID.js

@@ -1,3 +1,7 @@
+var dep = require('APPID.js');
+var APPID = dep.APPID;
+
+
 Pebble.addEventListener('showConfiguration', function() {
 	var url = 'http://armstrongwill.com/pebbleconfigurationpages/blocky/index.html';
 
@@ -53,7 +57,6 @@ var xhrRequest = function(url, type, callback) {
 }
 
 function locationSuccess(pos) {
-	//don't forget to put this stuff in a separate file and not check in to github
 	var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' +
                 pos.coords.latitude + '&lon=' + pos.coords.longitude + '&APPID='+APPID;
 	xhrRequest(url, 'Get',
