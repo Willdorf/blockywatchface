@@ -390,6 +390,7 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 
 	if (conditions_t && temp_t) {
 		snprintf(weather_layer_buffer, sizeof(weather_layer_buffer), "%s, %s", temperature_buffer, conditions_buffer);
+		text_layer_set_text_color(s_weather_layer, gcolor_legible_over(background_color));
 		text_layer_set_text(s_weather_layer, weather_layer_buffer);
 	}
 
