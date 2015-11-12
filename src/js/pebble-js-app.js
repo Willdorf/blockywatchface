@@ -25,7 +25,8 @@ Pebble.addEventListener('webviewclosed', function(e) {
 			blockNineColor : parseInt(configData.blockNineColor),
 			blockTenColor : parseInt(configData.blockTenColor),
 			blockElevenColor : parseInt(configData.blockElevenColor),
-			blockTwelveColor : parseInt(configData.blockTwelveColor)
+			blockTwelveColor : parseInt(configData.blockTwelveColor),
+			degreeOption : parseInt(configData.degreeOption)
 
 		}, function() {
 			console.log("send successful!");
@@ -33,6 +34,8 @@ Pebble.addEventListener('webviewclosed', function(e) {
 			console.log("send failed!");
 		});
 	}
+
+	getWeather();
 });
 
 //Listen for when AppMessage is received
@@ -62,7 +65,7 @@ function locationSuccess(pos) {
 				var json = JSON.parse(responseText);
 
 				//Temperature is in Kelvin
-				var temperature = Math.round(json.main.temp - 273.15);
+				var temperature = Math.round(json.main.temp);
 				console.log('Temperature is ' + temperature);
 
 				//Conditions

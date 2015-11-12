@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title></title>
-	<link rel='stylesheet' type='text/css' href='/bower_components/Slate/dist/css/slate.min.css'>
+	<link rel='stylesheet' type='text/css' href='bower_components/Slate/dist/css/slate.min.css'>
 	<link rel='stylesheet' type='text/css' href='css/style.css'>
 </head>
 <body>
@@ -17,6 +17,16 @@
 				Use this configuration page to select colors in the Blocky watchface.
 			</div>
 		</div>
+	</div>
+
+	<div class="item-container">
+	  <div class="item-container-header">Weather Options</div>
+	  <div class="item-container-content">
+	    <div class="item tab-buttons">
+	      <a id="Celsius" name="tab-1" class="tab-button" value="Celsius" onClick='tabClickHandler("Celsius")'>Celsius</a>
+	      <a id="Fahrenheit" name="tab-1" class="tab-button" value="Fahrenheit" onClick='tabClickHandler("Fahrenheit")'>Fahrenheit</a>
+	    </div>
+	  </div>
 	</div>
 
 	<div class='item-container'>
@@ -108,7 +118,7 @@
 					<input id='submitButton' type='button' class='item-button' value='SUBMIT'>
 			</div>
 	</div>
-	<script src='/bower_components/Slate/dist/js/slate.min.js'></script>
+	<script src='bower_components/Slate/dist/js/slate.min.js'></script>
 	<script src='js/main.js'></script>
 </body>
 </html>
