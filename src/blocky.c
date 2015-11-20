@@ -597,6 +597,9 @@ static void window_unload(Window *window) {
 	//destroy the date layer
 	text_layer_destroy(s_date_layer);
 
+	//destroy the weather layer
+	text_layer_destroy(s_weather_layer);
+
 	//destroy the bluetooth stuffs
 	layer_destroy(s_bluetooth_icon_layer);
 	gpath_destroy(bluetooth_path);
